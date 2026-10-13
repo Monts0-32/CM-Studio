@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://media.db.com/images/public/6ace7610a78db8a5eef7e899/d8057bb04_1.png"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="/manifest.json" />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("lumen-theme");
+          var dark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.classList.toggle("dark", dark);
+          document.documentElement.style.colorScheme = dark ? "dark" : "light";
+        } catch (e) {}
+      })();
+    </script>
+    <title>CM Studios — Websites & online stores for small businesses</title>
+    <meta
+      name="description"
+      content="A small web studio designing, building and looking after fast, modern websites and online stores for local businesses."
+    />
+    <meta property="og:title" content="CM Studios — Websites for small businesses" />
+    <meta
+      property="og:description"
+      content="Websites, online stores and ongoing care for local businesses. Fixed scope, one price, launch in three to four weeks."
+    />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
