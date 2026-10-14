@@ -4,6 +4,9 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // The site is hosted at https://monts0-32.github.io/CM-Studio/,
+  // so asset URLs must be prefixed with the repo name.
+  base: '/CM-Studio/',
   plugins: [
     react(),
   ],
