@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
@@ -8,7 +8,7 @@ import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ScrollToTop from './components/ScrollToTop';
 import Home from '@/pages/Home';
-import SiteLock, { isSiteUnlocked } from '@/components/agency/SiteLock';
+import SiteLock, { clearSiteUnlocked, isSiteUnlocked, markSiteUnlocked } from '@/components/agency/SiteLock';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -47,8 +47,31 @@ function App() {
   // once the site is ready to launch.
   const [siteUnlocked, setSiteUnlocked] = useState(isSiteUnlocked);
 
+  const unlockSite = () => {
+    markSiteUnlocked();
+    setSiteUnlocked(true);
+    console.log("%cCM Studios: site unlocked.", "color:#7cc4f0;font-weight:bold");
+  };
+
+  const lockSite = () => {
+    clearSiteUnlocked();
+    setSiteUnlocked(false);
+    console.log("%cCM Studios: site locked again.", "color:#7cc4f0;font-weight:bold");
+  };
+
+  // Admin console helpers: run `cmUnlock()` in the browser console to open the
+  // site, `cmLock()` to put it back behind the holding page.
+  useEffect(() => {
+    window.cmUnlock = unlockSite;
+    window.cmLock = lockSite;
+    return () => {
+      delete window.cmUnlock;
+      delete window.cmLock;
+    };
+  }, []);
+
   if (!siteUnlocked) {
-    return <SiteLock onUnlock={() => setSiteUnlocked(true)} />;
+    return <SiteLock />;
   }
 
   return (

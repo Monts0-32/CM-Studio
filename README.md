@@ -31,6 +31,21 @@ npm run preview
 - `npm run lint` / `npm run lint:fix` — ESLint
 - `npm run typecheck` — TypeScript check via `jsconfig.json`
 
+## Development Lock
+
+While the site is in development every visitor sees a holding page instead of the site itself.
+
+Admins can open the site from the browser console:
+
+```js
+cmUnlock() // open the site
+cmLock()   // put it back behind the holding page
+```
+
+The unlock is remembered for the rest of the browser session, so `cmUnlock()` is only needed once per tab.
+
+To take the lock off entirely, delete the `siteUnlocked` gate in `src/App.jsx` along with the `SiteLock` import.
+
 ## Notes
 
 - The data layer in `src/api/db.js` is an in-memory stand-in (no-op auth, entities, and integrations). Wire it up to a real backend before relying on logins, form submissions, or file uploads.
