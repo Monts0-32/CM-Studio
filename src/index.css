@@ -178,6 +178,14 @@
     animation: glow-drift 34s ease-in-out infinite reverse;
   }
 
+  /* The logo PNG is a transparent cube wrapped in a soft coloured aura. A
+     radial mask dissolves that aura into the page, so the mark reads as part
+     of the headline instead of a clipped square sitting on top of it. */
+  .logo-dissolve {
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 48%, rgba(0, 0, 0, 0.92) 60%, rgba(0, 0, 0, 0.55) 74%, rgba(0, 0, 0, 0.18) 88%, transparent 100%);
+    mask-image: radial-gradient(circle at 50% 50%, #000 48%, rgba(0, 0, 0, 0.92) 60%, rgba(0, 0, 0, 0.55) 74%, rgba(0, 0, 0, 0.18) 88%, transparent 100%);
+  }
+
   .brand-tile {
     background-color: #05060a;
     color: #e9ebf2;

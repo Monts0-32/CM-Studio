@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Bloom from "@/components/agency/Bloom";
 
+const LOGO_SRC = `${import.meta.env.BASE_URL}cm-logo.png`;
+
 const rise = (delay) => ({
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
@@ -36,7 +38,13 @@ export default function Hero() {
             className="font-heading text-[3.2rem] font-extrabold leading-[0.9] tracking-[-0.045em] sm:text-7xl md:text-[5.5rem] lg:text-[6.5rem]"
           >
             Small business
-            <span className="ml-3 inline-block h-4 w-4 rounded-full bg-accent sm:h-6 sm:w-6 md:h-8 md:w-8" />
+            <img
+              src={LOGO_SRC}
+              alt="CM Studios"
+              width={320}
+              height={320}
+              className="logo-dissolve ml-2 hidden h-[4.75rem] w-[4.75rem] object-contain align-[0.02em] sm:inline-block md:hidden lg:inline-block"
+            />
           </motion.h1>
           <motion.div {...rise(0.2)} className="md:pb-3">
             <p className="font-heading text-2xl leading-[1.15] tracking-tight text-foreground/85 sm:text-3xl">
