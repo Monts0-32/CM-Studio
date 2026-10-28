@@ -135,13 +135,13 @@
 
   .canvas-light {
     background-color: hsl(214 13% 90%);
-    background-image: linear-gradient(168deg, hsl(214 13% 90%) 0%, hsl(210 16% 87%) 58%, hsl(210 16% 87%) 100%);
+    background-image: linear-gradient(168deg, hsl(214 13% 91%) 0%, hsl(212 15% 88%) 55%, hsl(210 16% 86%) 100%);
   }
 
   .canvas-dark {
     opacity: 0;
     background-color: hsl(0 0% 10%);
-    background-image: linear-gradient(168deg, hsl(0 0% 20%) 0%, hsl(0 0% 10%) 58%, hsl(0 0% 10%) 100%);
+    background-image: linear-gradient(168deg, hsl(220 14% 16%) 0%, hsl(220 12% 11%) 55%, hsl(0 0% 9%) 100%);
   }
 
   .dark .canvas-dark {
@@ -152,23 +152,29 @@
     opacity: 0;
   }
 
+  /* Glows are painted across the whole layer (not as clipped circles) so no
+     hard edge can show where a gradient would otherwise be cut off. */
+  .glow {
+    will-change: transform, opacity;
+  }
+
   .glow-cool-light {
-    background: radial-gradient(circle, hsl(210 50% 77% / 0.5) 0%, hsl(210 50% 77% / 0) 70%);
+    background: radial-gradient(58rem 44rem at 94% -8%, hsl(210 50% 77% / 0.6) 0%, hsl(210 50% 77% / 0.26) 40%, hsl(210 50% 77% / 0) 72%);
     animation: glow-drift 26s ease-in-out infinite;
   }
 
   .glow-warm-light {
-    background: radial-gradient(circle, hsl(212 12% 86% / 0.4) 0%, hsl(212 12% 86% / 0) 70%);
+    background: radial-gradient(52rem 42rem at 2% 106%, hsl(30 65% 76% / 0.5) 0%, hsl(30 65% 76% / 0.2) 42%, hsl(30 65% 76% / 0) 74%);
     animation: glow-drift 32s ease-in-out infinite reverse;
   }
 
   .glow-cool-dark {
-    background: radial-gradient(circle, hsl(213 28% 62% / 0.5) 0%, hsl(213 28% 62% / 0) 70%);
+    background: radial-gradient(58rem 44rem at 94% -8%, hsl(213 28% 62% / 0.55) 0%, hsl(213 28% 62% / 0.22) 40%, hsl(213 28% 62% / 0) 72%);
     animation: glow-drift 26s ease-in-out infinite;
   }
 
   .glow-warm-dark {
-    background: radial-gradient(circle, hsl(25 14% 43% / 0.45) 0%, hsl(25 14% 43% / 0) 70%);
+    background: radial-gradient(52rem 42rem at 2% 106%, hsl(24 45% 45% / 0.5) 0%, hsl(24 45% 45% / 0.18) 42%, hsl(24 45% 45% / 0) 74%);
     animation: glow-drift 34s ease-in-out infinite reverse;
   }
 
@@ -221,15 +227,17 @@
   }
 }
 
+/* Full-bleed glow layers drift by scaling only — a translate would expose an
+   unpainted strip along the edge of the layer. */
 @keyframes glow-drift {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
   }
   50% {
-    transform: translate3d(-3%, 4%, 0) scale(1.08);
-  }
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
+    transform: scale(1.08);
+    opacity: 1;
   }
 }
 
