@@ -178,12 +178,12 @@
     animation: glow-drift 34s ease-in-out infinite reverse;
   }
 
-  /* The logo PNG is a transparent cube wrapped in a soft coloured aura. A
-     radial mask dissolves that aura into the page, so the mark reads as part
-     of the headline instead of a clipped square sitting on top of it. */
+  /* The logo PNG is a transparent cube wrapped in a soft coloured aura. The
+     mark is cropped to the cube and masked with a radial fade, so the aura
+     dissolves into the page instead of being cut off at a hard edge. */
   .logo-dissolve {
-    -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 48%, rgba(0, 0, 0, 0.92) 60%, rgba(0, 0, 0, 0.55) 74%, rgba(0, 0, 0, 0.18) 88%, transparent 100%);
-    mask-image: radial-gradient(circle at 50% 50%, #000 48%, rgba(0, 0, 0, 0.92) 60%, rgba(0, 0, 0, 0.55) 74%, rgba(0, 0, 0, 0.18) 88%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 52%, rgba(0, 0, 0, 0.92) 64%, rgba(0, 0, 0, 0.5) 78%, rgba(0, 0, 0, 0.15) 90%, transparent 100%);
+    mask-image: radial-gradient(circle at 50% 50%, #000 52%, rgba(0, 0, 0, 0.92) 64%, rgba(0, 0, 0, 0.5) 78%, rgba(0, 0, 0, 0.15) 90%, transparent 100%);
   }
 
   .brand-tile {
